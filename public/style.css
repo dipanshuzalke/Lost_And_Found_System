@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+nav {
+  background-color: rgb(17, 17, 75);
+  padding: 20px;
+  color: white;
+}
+
+.nav-section {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.nav-section h3 {
+    font-size: 32px;
+}
+
+.nav-section ul {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-section ul li{
+    list-style: none;
+}
+
+.btn {
+    padding: 8px 15px;
+    background-color: lightskyblue;
+    border: none;
+    border-radius: 2px;
+}
