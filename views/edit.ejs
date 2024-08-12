@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Post</title>
+</head>
+<body>
+    <h2>Edit your post</h2>
+    <form method="post" action="/posts/<%=post.id%>?_method=PATCH">
+
+       <h3>Id: @<%= post.id %></h3>
+        <h4>Item name :</h4>
+        <input type="text" name="item" placeholder="Enter item" />
+        <br />
+        <h4>Description</h4>
+        <textarea rows="10" cols="35" name="description" id="" placeholder="Enter Description"><%= post.description %></textarea>
+        <br />
+        <h4>Enter a question based on the item</h4>
+        <input type="text" name="question" placeholder="Ex:- What is the color of phone ?" />
+        <br />
+        <h4>Item type</h4>
+        <select name="choose" id="">
+            <option value="choose">Choose..</option>
+            <option value="lost">Lost It</option>
+            <option value="found">Found It</option>
+        </select>
+        <br />
+        <button class="btn">Submit</button>
+    </form>
+</body>
+</html>
