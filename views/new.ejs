@@ -9,27 +9,16 @@
 </head>
 
 <body>
-    <form  method="post" action="/posts">
-        <h2>Post Item</h2>
+    <h3>CREATE A NEW REPORT!</h3>
+    <form method="POST" action="/report">
+        <input name="reports[item]" placeholder="enter title" type="text">
+        <br /> <br />
+        <textarea name="reports[description]" placeholder="enter description"></textarea>
+        <br /> <br />
+        <input name="reports[question]" placeholder="enter question" type="text">
+        <br /> <br />
 
-       <h3>Id: @<%= post.id %></h3>
-        <h4>Item name : </h4>
-        <input type="text" name="item" placeholder="Enter item" />
-        <br />
-        <h4>Description</h4>
-        <textarea rows="10" cols="35" name="description" id="" placeholder="Enter Description"></textarea>
-        <br />
-        <!-- <h4>Enter a question based on the item</h4>
-        <input type="text" name="question" placeholder="Ex:- What is the color of phone ?" /> -->
-        <br />
-        <h4>Item type</h4>
-        <select name="choose" id="">
-            <option value="choose">Choose..</option>
-            <option value="lost">Lost It</option>
-            <option value="found">Found It</option>
-        </select>
-        <br />
-        <button class="btn">Submit</button>
+        <button>ADD</button>
     </form>
 </body>
 </html>

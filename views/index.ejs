@@ -22,26 +22,33 @@
 
     <main>
         <h1>Lost Items</h1>
-        <% for(post of posts) { %>
-            <div class="post">
-                <h4>Item : <%= post.item %></h4>
-                <h4>Description : <%= post.description %></h4>
-                <!-- <h4>Question : <%= post.question %></h4> -->
-                <h4>Choose : <%= post.choose %></h4>
-                <br/>
-                <a href="http://localhost:3000/posts/<%= post.id %>">See in detail</a>
-                <a href="http://localhost:3000/posts/<%= post.id %>/edit">Edit</a>
-                <form method="post" action="/posts/<%= post.id %>?_method=DELETE">
-                    <button>Delete Post</button>
-                </form>
-            </div>
+        <br>
+        <hr>
+        <br>
+        <br>
+        <% for(report of Allreports) { %>
+            <ul>
+                <li>
+                    <div class="post">
+                        <h4>Item : <%= report.item %></h4>
+                        <h4>Description : <%= report.description %></h4>
+                        <h4>Question : <%= report.question %></h4>
+                        <br/>
+                        <a href="/report/<%= report.id %>">See in detail</a>
+                        <a href="/report/<%= report.id %>/edit">Edit</a>
+                        <form method="POST" action="/report/<%= report.id %>?_method=DELETE">
+                            <button>Delete</button>
+                        </form>
+                    </div>
+                </li>
+            </ul>
         <% } %>
 
     </main>
 
     <br/>
     <br/>
-    <a href="http://localhost:3000/posts/new">new post</a>
+    <a href="/report/new">new post</a>
 
     <script src="/app.js"></script>
 </body>
