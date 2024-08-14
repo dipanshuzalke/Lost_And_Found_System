@@ -1,80 +1,83 @@
 const express = require("express");
 const app = express();
+const mongoose = require("mongoose");
 const path = require("path");
-const { v4: uuidv4 } = require('uuid');
-var methodOverride = require('method-override');
+const methodOverride = require("method-override");
+const reports = require("./models/reportModel.js");
 
-const port = 3000;
 
-app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-
-app.use(express.static(path.join(__dirname, "public")));
-
+app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(methodOverride('_method'));
+app.use(methodOverride("_method"));
 
-let posts = [
-    {
-        id: uuidv4(),
-        item: "phone",
-        description: "I had lost my item",
-        question: "What is my item",
-        choose: "lost"
-    }
-];
+let MONGO_URL = ("mongodb://127.0.0.1:27017/lost&found");
 
-//To get data for all posts
-app.get("/posts", (req, res) => {
-    res.render("index.ejs", { posts });
+main()
+   .then(()=>{
+    console.log("connected to DB");
+   })
+   .catch((err)=>{
+    console.log(err);
+   });
+
+async function main(){
+    await mongoose.connect(MONGO_URL);
+}
+
+
+
+
+//root route
+app.get("/", async (req, res) => {
+    let Allreports = await reports.find({});
+    res.render("index.ejs", {Allreports});
 });
 
-//Serve the form
-app.get("/posts/new", (req, res) => {
-    res.render("new.ejs");
+// add new report route
+app.get("/report/new", async (req, res) => {
+    let Allreports = await reports.find({});
+    res.render("new.ejs", {report : Allreports});
 });
 
-//To add a new post
-app.post("/posts", (req, res) => {
-    let {item, description, question, choose} = req.body;
-    let id = uuidv4();
-    posts.push({id, item, description, question, choose});
-    res.redirect("/posts");
+// 
+app.post("/report", async (req, res) => {
+    let newReport = new reports(req.body.reports);
+    await newReport.save();
+    res.redirect("/");
 });
 
-//To get one post using id
-app.get("/posts/:id", (req, res) => {
+// //To get one post using id
+app.get("/report/:id", async (req, res) => {
     let { id } = req.params;
-    let post = posts.find((p) => id === p.id);
-    res.render("show.ejs", { post });
+    let report = await reports.findById(id);
+    res.render("show.ejs", { report });
 });
 
-//To update specific post
-app.patch("/posts/:id", (req, res) => {
-    let { id } = req.params;
-    let newDescription = req.body.description;
-    let post = posts.find((p) => id === p.id);
-    post.description = newDescription;
-    console.log(post);
-  res.render("show.ejs", { post })
-})
 
-//Serve the edit form
-app.get("/posts/:id/edit", (req, res) => {
+// //Serve the edit form
+app.get("/report/:id/edit", async (req, res) => {
     let { id } = req.params;
-    let post = posts.find((p) => id === p.id);
-    res.render("edit.ejs", { post });
+    let report = await reports.findById(id);
+    res.render("edit.ejs", { report });
 });
 
-app.delete("/posts/:id", (req, res) => {
-    let { id } = req.params;
-    posts = posts.filter((p) => id !== p.id);
-    res.redirect("/posts");
-})
+app.put("/report/:id", async (req, res)=>{
+    let {id} = req.params;
+    await reports.findByIdAndUpdate(id,{...req.body.report});
+    res.redirect("/");
+});
 
-app.listen(port, () => {
-    console.log(`listening on port ${port}`);
+app.delete("/report/:id", async (req, res) => {
+    let { id } = req.params;
+    await reports.findByIdAndDelete(id,{...req.body.reports});
+    res.redirect("/");
+});
+
+
+app.listen(8080, () => {
+    console.log("listening on port 8080");
 });
 
 

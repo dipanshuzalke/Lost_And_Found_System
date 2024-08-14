@@ -7,17 +7,17 @@
 </head>
 <body>
     <h2>Edit your post</h2>
-    <form method="post" action="/posts/<%=post.id%>?_method=PATCH">
+    <form method="POST" action="/report/<%=report.id%>?_method=PUT">
 
-       <h3>Id: @<%= post.id %></h3>
+       <h3>Id: @<%= report.id %></h3>
         <h4>Item name :</h4>
-        <input type="text" name="item" placeholder="Enter item" />
+        <input type="text" name="report[item]" placeholder="Enter item" value="<%= report.item%>" />
         <br />
         <h4>Description</h4>
-        <textarea rows="10" cols="35" name="description" id="" placeholder="Enter Description"><%= post.description %></textarea>
+        <textarea rows="10" cols="35" name="report[description]"  placeholder="Enter Description"><%= report.description %></textarea>
         <br />
         <h4>Enter a question based on the item</h4>
-        <input type="text" name="question" placeholder="Ex:- What is the color of phone ?" />
+        <input type="text" name="report[question]" placeholder="Ex:- What is the color of phone ?" value="<%= report.question%>" />
         <br />
         <h4>Item type</h4>
         <select name="choose" id="">
