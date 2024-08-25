@@ -1,0 +1,94 @@
+<% layout("/layouts/boilerplate") %>
+  <div class="container-fluid">
+    <div class="mb-3">
+      <h3 class="fw-bold fs-4 mb-3 admin">Report Lost and Found Item</h3>
+      <div class="row mt-3 form-container">
+        <div class="col-8 offset-2 form-content">
+          <div class="form-data">
+            <h2 class="fw-bold offset-5 admin">FORM</h2>
+            <hr class="admin" />
+            <form method="POST" action="/report" novalidate class="needs-validation">
+              <div class="row">
+                <div class="mb-3 col-md-4">
+                  <label for="date" class="form-label admin">Date:</label>
+                  <input type="date" name="report[date]" placeholder="" class="form-control" required/>
+                  <div class="invalid-feedback">Please provide the date.</div>
+                </div>
+                <div class="mb-3 col-md-4">
+                  <label for="time" class="form-label admin">Time:</label>
+                  <input type="time" name="report[time]" placeholder="" class="form-control" required/>
+                  <div class="invalid-feedback">Please provide the time.</div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="itemName" class="form-label admin">Item name</label>
+                <input type="text" name="report[itemName]" placeholder="Black Leather Wallet" class="form-control" required/>
+                <div class="valid-feedback">Title looks good!</div>
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label admin">Description</label>
+                <textarea name="report[description]" class="form-control"
+                  placeholder="A black leather wallet with several credit cards and a photo ID" required></textarea>
+                  <div class="invalid-feedback">Please provide a description..</div>
+              </div>
+              <div class="mb-3">
+                <label for="location" class="form-label admin">Location</label>
+                <input type="text" name="report[location]" placeholder="Badminton court, near the Nescafe"
+                  class="form-control" required/>
+                  <div class="invalid-feedback">Please provide a location.</div>
+              </div>
+              <div class="mb-3">
+                <label for="question" class="form-label admin">Enter a question based on the item</label>
+                <input type="text" name="report[question]" placeholder="What is the name on the photo ID?"
+                  class="form-control" required/>
+                  <div class="invalid-feedback">Please provide question..</div>
+              </div>
+              <div class="row">
+                <div class="mb-3 col-md-4">
+                  <label for="itemType" class="mb-2 admin">Item type</label>
+                  
+                  <select name="report[itemType]" id="itemType" class="form-control" required>
+                    <option value="item">Choose Item type...</option>
+                    <option value="item">Bags & Backpacks</option>
+                    <option value="item">Clothing</option>
+                    <option value="item">Computers & Electronics</option>
+                    <option value="item">Earphones</option>
+                    <option value="item">Footwear</option>
+                    <option value="item">IDs & Cards</option>
+                    <option value="item">Keys & Keychains</option>
+                    <option value="item">Mobile Devices</option>
+                    <option value="item">Papers & Documents</option>
+                    <option value="item">Wallets & Purses</option>
+                    <option value="item">Watches & Jewellery</option>
+                    <option value="item">Wires & Cables</option>
+                    <option value="item">Other</option>
+                  </select>
+                  <div class="invalid-feedback">Please provide the type of item</div>
+                </div>
+                <div class="mb-3 col-md-4">
+                  <label for="status" class="mb-2 admin">Status</label>
+  
+                  <select name="report[status]" id="status" class="form-control" required>
+                    <option value="">Lost or Found...</option>
+                    <option value="lost">Lost</option>
+                    <option value="found">Found</option>
+                  </select>
+                  <div class="invalid-feedback">Please provide a status of item.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="image" class="form-label admin">Upload Image</label>
+                  <input type="file" name="report[image]" placeholder="What is the name on the photo ID?"
+                    class="form-control" required/>
+                    <div class="invalid-feedback">Please provide a image.</div>
+                </div>
+              </div>
+              <button class="btn add-btn mt-3 offset-3">
+                <i class="fa-solid fa-check"></i> Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

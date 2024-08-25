@@ -1,0 +1,27 @@
+<% layout("/layouts/boilerplate") %>
+  <div class="container-fluid">
+    <div class="mb-3">
+      <h3 class="fw-bold fs-4 admin">Lost Items</h3>
+      <div class="card-container lost-card">
+        <% for(let report of allReports) { %>
+        <a href="/report/<%= report._id %>" class="report-link">
+          <div class="card grid" style="width: 18rem">
+            <img src="/assets/laptop.jpg" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <p class="card-title">Item Name: <b><%= report.itemName %></b></p>
+              <p class="card-text">Description: <%= report.description %></p>
+              <p class="card-text">Location: <%= report.location %></p>
+              <p class="card-text">Question: <%= report.question %></p>
+              <p class="card-text">Item type: <%= report.itemType %></p>
+              <p class="card-text">Status: <%= report.status %></p>
+              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+          </div>
+        </a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+
+
+  

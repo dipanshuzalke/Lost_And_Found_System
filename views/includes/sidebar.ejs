@@ -1,0 +1,84 @@
+
+  <aside id="sidebar">
+    <div class="d-flex">
+      <button class="toggle-btn" type="button">
+        <i class="lni lni-grid-alt"></i>
+      </button>
+      <div class="sidebar-logo">
+        <a href="/">Lost and Found</a>
+      </div>
+    </div>
+    <ul class="sidebar-nav">
+      <li class="sidebar-item">
+        <a href="/" class="sidebar-link">
+          <i class="lni lni-user"></i>
+          <span>Profile</span>
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a href="/" class="sidebar-link">
+          <i class="lni lni-graph"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a
+          href="/"
+          class="sidebar-link collapsed has-dropdown"
+          data-bs-toggle="collapse"
+          data-bs-target="#auth"
+          aria-expanded="false"
+          aria-controls="auth"
+        >
+          <i class="fa-solid fa-rectangle-list"></i>
+          <span>Lost and Found Item</span>
+        </a>
+        <ul
+          id="auth"
+          class="sidebar-dropdown list-unstyled collapse"
+          data-bs-parent="#sidebar"
+        >
+          <li class="sidebar-item">
+            <a href="/report" class="sidebar-link">Lost Items</a>
+          </li>
+          <li class="sidebar-item">
+            <a href="/" class="sidebar-link">Found Items</a>
+          </li>
+          <li class="sidebar-item">
+            <a href="/returnedItems" class="sidebar-link">Returned Items</a>
+          </li>
+        </ul>
+      </li>
+      <li class="sidebar-item">
+        <a href="/report/new" class="sidebar-link">
+          <i class="lni lni-popup"></i>
+          <span>Add new Report</span>
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a href="/" class="sidebar-link">
+          <i class="lni lni-comments-reply"></i>
+          <span>Responses</span>
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a href="/" class="sidebar-link">
+          <i class="fa-solid fa-person-circle-question"></i>
+          <span>My listings</span>
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a href="/" class="sidebar-link">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>Member Information</span>
+        </a>
+      </li>
+    </ul>
+    <div class="sidebar-footer">
+      <a href="/" class="sidebar-link">
+        <i class="lni lni-exit"></i>
+        <span>Logout</span>
+      </a>
+    </div>
+  </aside>
+

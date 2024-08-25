@@ -1,0 +1,49 @@
+<% layout("/layouts/boilerplate") %>
+    <div class="container-fluid">
+        <div class="mb-3">
+          <h3 class="fw-bold fs-4 mb-3 admin">Returned Items</h3>
+          <div class="sort-item">
+            <div class="search-form">
+              <form action="#" class="search-item">
+                <input
+                  type="text"
+                  class="form-control before-0 rounded-0 search-bar"
+                  placeholder="Search..."
+                />
+                <span
+                  ><button class="btn border-0 rounded-0 btn-search" type="button">
+                    <i class="fa-solid fa-magnifying-glass"></i></button
+                ></span>
+              </form>
+            </div>
+            <div class="date-form">
+              <form action="#" class="search-item date-search">
+                <input
+                  type="date"
+                  class="form-control before-0 rounded-0 search-date-bar"
+                  placeholder="Search by Date"
+                />
+                <button class="btn border-0 rounded-0 btn-search" type="button">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="card-container">
+            <% for(let report of allListings) { %>
+              <a href="/returnedItems/<%= listing._id %>" class="listing-link">
+                <div class="card grid" style="width: 18rem">
+                  <img src="/laptop.jpg" class="card-img-top" alt="..." />
+                  <div class="card-body">
+                    <h5 class="card-title">Black Leather Wallet</h5>
+                    <p class="card-text">Found: 20 Aug 2024</p>
+                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                  </div>
+                </div>
+              </a>
+              <% } %>
+          </div>
+        </div>
+      </div>
+      
+

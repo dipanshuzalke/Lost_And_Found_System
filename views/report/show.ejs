@@ -1,0 +1,27 @@
+<% layout("/layouts/boilerplate") %>
+<div class="row">
+  <div class="card-container show-report offset-5">
+    <div class="card grid" style="width: 18rem">
+      <img src="/assets/laptop.jpg" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <p class="card-title">Item Name: <b><%= report.itemName %></b></p>
+        <p class="card-text">Description: <%= report.description %></p>
+        <p class="card-text">Location: <%= report.location %></p>
+        <p class="card-text">Question: <%= report.question %></p>
+        <p class="card-text">Item type: <%= report.itemType %></p>
+        <p class="card-text">Status: <%= report.status %></p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+    </div>
+    <div class="btns show-btns">
+      <a
+        href="/report/<%= report._id %>/edit"
+        class="btn edit-btn"
+        >Edit</a
+      >
+      <form method="POST" action="/report/<%= report._id %>?_method=DELETE">
+        <button class="btn delete-btn">Delete</button>
+      </form>
+    </div>
+  </div>
+</div>
