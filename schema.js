@@ -11,3 +11,11 @@ module.exports.reportSchema = Joi.object({
     image: Joi.string().required(),
   }).required(),
 });
+
+module.exports.feedbackSchema = Joi.object({
+  feedback: Joi.object({
+    rating: Joi.number().required().min(1).max(5),
+    comment: Joi.string().required(),
+    email: Joi.string().required(),
+  }).required(),
+});
