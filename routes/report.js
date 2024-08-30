@@ -4,6 +4,7 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const ExpressError = require("../utils/ExpressError.js");
 const { reportSchema } = require("../schema.js");
 const Report = require("../models/reportModel.js");
+const { isLoggedIn } = require("../middleware.js");
 
 // Validation for Schema
 const validateReport = (req, res, next) => {
@@ -36,10 +37,12 @@ router.get(
 // Create report
 router.post(
   "/",
+  isLoggedIn,
   validateReport,
   wrapAsync(async (req, res) => {
     let newReport = new Report(req.body.report);
     await newReport.save();
+    req.flash('success', 'New Report Created');
     res.redirect("/report");
   })
 );
@@ -57,6 +60,7 @@ router.get(
 // Edit report
 router.get(
   "/:id/edit",
+  isLoggedIn,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     let report = await Report.findById(id);
@@ -67,10 +71,12 @@ router.get(
 // Update report
 router.put(
   "/:id",
+  isLoggedIn,
   validateReport,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     await Report.findByIdAndUpdate(id, { ...req.body.report });
+    req.flash("success", "Report Updated");
     res.redirect("/report");
   })
 );
@@ -78,6 +84,7 @@ router.put(
 // Delete report
 router.delete(
   "/:id",
+  isLoggedIn,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     await Report.findByIdAndDelete(id, { ...req.body.report });

@@ -8,7 +8,7 @@ module.exports.reportSchema = Joi.object({
     question: Joi.string().required(),
     itemType: Joi.string().required(),
     status: Joi.string().required(),
-    image: Joi.string().required(),
+    image: Joi.string(),
   }).required(),
 });
 

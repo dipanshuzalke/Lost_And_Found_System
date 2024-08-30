@@ -236,7 +236,7 @@ footer {
 /* Returned Items */
 .sort-item {
   display: flex;
-  gap: 10rem;
+  gap: 7rem;
 }
 
 .search-item {
@@ -298,6 +298,11 @@ footer {
   justify-items: left;
   padding-left: 1rem;
   gap: 2rem;
+}
+
+.btn-dropdown {
+  background-color: #0e2238;
+  color: #fff;
 }
 
 .edit-btn {
