@@ -44,7 +44,12 @@ const reportSchema = new Schema({
   //   default: "",
   //   set: (v) => (v === "" ? "hi" : v),
   // },
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  }
 });
 
 const Report = mongoose.model("Report", reportSchema);
 module.exports = Report;
+

@@ -9,7 +9,7 @@
           <hr class="admin" />
           <form
             method="POST"
-            action="/report/<%= report._id %>/??_method=PUT"
+            action="/report/<%= report._id %>/?_method=PUT"
             novalidate
             class="needs-validation"
           >
@@ -21,7 +21,6 @@
                   name="report[date]"
                   placeholder=""
                   class="form-control"
-                  required
                 />
                 <div class="invalid-feedback">Please provide the date.</div>
               </div>
@@ -32,7 +31,6 @@
                   name="report[time]"
                   placeholder=""
                   class="form-control"
-                  required
                 />
                 <div class="invalid-feedback">Please provide the time.</div>
               </div>
@@ -141,7 +139,6 @@
                   name="report[image]"
                   placeholder="What is the name on the photo ID?"
                   class="form-control"
-                  required
                 />
                 <div class="invalid-feedback">Please provide a image.</div>
               </div>

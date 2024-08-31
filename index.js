@@ -14,11 +14,12 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/userModel.js");
 
 
-const reports = require("./routes/report.js");
-const feedbacks = require("./routes/feedback.js");
+const reportRouter = require("./routes/report.js");
+const feedbackRouter = require("./routes/feedback.js");
 const userRouter = require("./routes/user.js");
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/lost&found";
+
+const MONGO_URL = "mongodb://127.0.0.1:27017/minorProject";
 
 main()
   .then(() => {
@@ -74,12 +75,13 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   // console.log(res.locals.success);
-  // res.locals.error = req.flash("error");
+  res.locals.error = req.flash("error");
+  res.locals.currUser = req.user;
   next();
 });
 
-app.use("/report", reports);
-app.use("/feedback", feedbacks);
+app.use("/report", reportRouter);
+app.use("/feedback", feedbackRouter);
 app.use("/", userRouter);
 
 

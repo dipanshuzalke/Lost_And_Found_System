@@ -1,21 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync.js");
-const ExpressError = require("../utils/ExpressError.js");
-const { reportSchema } = require("../schema.js");
+// const ExpressError = require("../utils/ExpressError.js");
+// const { reportSchema } = require("../schema.js");
 const Report = require("../models/reportModel.js");
-const { isLoggedIn } = require("../middleware.js");
-
-// Validation for Schema
-const validateReport = (req, res, next) => {
-  let { error } = reportSchema.validate(req.body);
-  if (error) {
-    let errMsg = error.details.map((el) => el.message).join(",");
-    throw new ExpressError(400, errMsg);
-  } else {
-    next();
-  }
-};
+const { isLoggedIn, isOwner, validateReport } = require("../middleware.js");
 
 //Lost Items route
 router.get(
@@ -27,12 +16,9 @@ router.get(
 );
 
 // Add new report route
-router.get(
-  "/new",
-  wrapAsync(async (req, res) => {
-    res.render("report/new.ejs");
-  })
-);
+router.get("/new", isLoggedIn, (req, res) => {
+  res.render("report/new.ejs");
+});
 
 // Create report
 router.post(
@@ -40,9 +26,10 @@ router.post(
   isLoggedIn,
   validateReport,
   wrapAsync(async (req, res) => {
-    let newReport = new Report(req.body.report);
+    const newReport = new Report(req.body.report);
+    newReport.owner = req.user._id;
     await newReport.save();
-    req.flash('success', 'New Report Created');
+    req.flash("success", "Your report has been created!");
     res.redirect("/report");
   })
 );
@@ -52,7 +39,7 @@ router.get(
   "/:id",
   wrapAsync(async (req, res) => {
     let { id } = req.params;
-    let report = await Report.findById(id);
+    let report = await Report.findById(id).populate("owner");
     res.render("report/show.ejs", { report });
   })
 );
@@ -61,9 +48,14 @@ router.get(
 router.get(
   "/:id/edit",
   isLoggedIn,
+  isOwner,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
-    let report = await Report.findById(id);
+    const report = await Report.findById(id);
+    if (!report) {
+      req.flash("error", "Report you requested for does not exist!");
+      res.redirect("/report");
+    }
     res.render("report/edit.ejs", { report });
   })
 );
@@ -72,12 +64,13 @@ router.get(
 router.put(
   "/:id",
   isLoggedIn,
+  isOwner,
   validateReport,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     await Report.findByIdAndUpdate(id, { ...req.body.report });
     req.flash("success", "Report Updated");
-    res.redirect("/report");
+    res.redirect(`/report/${id}`);
   })
 );
 
@@ -85,9 +78,11 @@ router.put(
 router.delete(
   "/:id",
   isLoggedIn,
+  isOwner,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     await Report.findByIdAndDelete(id, { ...req.body.report });
+    req.flash("success", "Report Deleted");
     res.redirect("/report");
   })
 );

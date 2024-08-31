@@ -4,6 +4,7 @@
     <div class="card grid" style="width: 18rem">
       <img src="/assets/laptop.jpg" class="card-img-top" alt="..." />
       <div class="card-body">
+        <p class="card-title">Owned by <b><%= report.owner.fullName %></b></p>
         <p class="card-title">Item Name: <b><%= report.itemName %></b></p>
         <p class="card-text">Description: <%= report.description %></p>
         <p class="card-text">Location: <%= report.location %></p>
@@ -13,6 +14,8 @@
         <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
       </div>
     </div>
+
+    <% if(currUser && currUser._id.equals(report.owner._id)) { %>
     <div class="btns show-btns">
       <a
         href="/report/<%= report._id %>/edit"
@@ -23,5 +26,6 @@
         <button class="btn delete-btn">Delete</button>
       </form>
     </div>
+    <% } %>
   </div>
 </div>

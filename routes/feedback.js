@@ -1,24 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync.js");
-const ExpressError = require("../utils/ExpressError.js");
-const { feedbackSchema } = require("../schema.js");
+// const ExpressError = require("../utils/ExpressError.js");
+// const { feedbackSchema } = require("../schema.js");
 const Feedback = require("../models/feedbackModel.js");
-const { isLoggedIn } = require("../middleware.js");
+const { isLoggedIn, validateFeedback, isFeedbackAuthor } = require("../middleware.js");
 
-const validateFeedback = (req, res, next) => {
-  let { error } = feedbackSchema.validate(req.body);
-  if (error) {
-    let errMsg = error.details.map((el) => el.message).join(",");
-    throw new ExpressError(400, errMsg);
-  } else {
-    next();
-  }
-};
 
 // Feedback Form
 router.get(
   "/",
+  isLoggedIn,
   wrapAsync(async (req, res) => {
     res.render("report/feedback.ejs");
   })
@@ -28,6 +20,7 @@ router.get(
 router.post(
   "/",
   isLoggedIn,
+  isFeedbackAuthor,
   validateFeedback,
   wrapAsync(async (req, res) => {
     // Extract feedback details from the request body
@@ -35,6 +28,7 @@ router.post(
 
     // Create a new feedback instance
     const newFeedback = new Feedback({ rating, comment, email });
+    newFeedback.author = req.user._id;
 
     // Save the feedback to the database
     await newFeedback.save();
