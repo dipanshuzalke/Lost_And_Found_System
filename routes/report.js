@@ -3,88 +3,58 @@ const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync.js");
 // const ExpressError = require("../utils/ExpressError.js");
 // const { reportSchema } = require("../schema.js");
-const Report = require("../models/reportModel.js");
+// const Report = require("../models/reportModel.js");
 const { isLoggedIn, isOwner, validateReport } = require("../middleware.js");
+const multer = require("multer");
+const { storage } = require("../cloudConfig.js");
+const upload = multer({ storage });
 
-//Lost Items route
-router.get(
-  "/",
-  wrapAsync(async (req, res) => {
-    let allReports = await Report.find({});
-    res.render("report/report.ejs", { allReports });
-  })
-);
+const reportController = require("../controllers/report.js");
+
+router
+  .route("/")
+  //Index route
+  .get(wrapAsync(reportController.index))
+  //Create route
+  // .post(
+  //   isLoggedIn,
+  //   upload.single("report[image]"),
+  //   validateReport,
+  //   wrapAsync(reportController.createReport)
+  // );
+  .post(upload.single("report[image]"), (req, res) => {
+    console.log(req.body); // Log the body to check for 'report.image'
+    console.log(req.file);  // If using Multer, check the file
+    if (!req.body['report[image]'] && !req.file) {
+    return res.status(400).send('Image file is required.');
+  }
+    res.send(req.file.url);
+  });
 
 // Add new report route
-router.get("/new", isLoggedIn, (req, res) => {
-  res.render("report/new.ejs");
-});
+router.get("/new", isLoggedIn, reportController.renderReportForm);
 
-// Create report
-router.post(
-  "/",
-  isLoggedIn,
-  validateReport,
-  wrapAsync(async (req, res) => {
-    const newReport = new Report(req.body.report);
-    newReport.owner = req.user._id;
-    await newReport.save();
-    req.flash("success", "Your report has been created!");
-    res.redirect("/report");
-  })
-);
-
-// Show report
-router.get(
-  "/:id",
-  wrapAsync(async (req, res) => {
-    let { id } = req.params;
-    let report = await Report.findById(id).populate("owner");
-    res.render("report/show.ejs", { report });
-  })
-);
+router
+  .route("/:id")
+  //Show route
+  .get(wrapAsync(reportController.showReport))
+  //Update route
+  .put(
+    isLoggedIn,
+    isOwner,
+    upload.single("report[image]"),
+    validateReport,
+    wrapAsync(reportController.updateReport)
+  )
+  //Edit route
+  .delete(isLoggedIn, isOwner, wrapAsync(reportController.destroyReport));
 
 // Edit report
 router.get(
   "/:id/edit",
   isLoggedIn,
   isOwner,
-  wrapAsync(async (req, res) => {
-    let { id } = req.params;
-    const report = await Report.findById(id);
-    if (!report) {
-      req.flash("error", "Report you requested for does not exist!");
-      res.redirect("/report");
-    }
-    res.render("report/edit.ejs", { report });
-  })
-);
-
-// Update report
-router.put(
-  "/:id",
-  isLoggedIn,
-  isOwner,
-  validateReport,
-  wrapAsync(async (req, res) => {
-    let { id } = req.params;
-    await Report.findByIdAndUpdate(id, { ...req.body.report });
-    req.flash("success", "Report Updated");
-    res.redirect(`/report/${id}`);
-  })
-);
-
-// Delete report
-router.delete(
-  "/:id",
-  isLoggedIn,
-  isOwner,
-  wrapAsync(async (req, res) => {
-    let { id } = req.params;
-    await Report.findByIdAndDelete(id, { ...req.body.report });
-    req.flash("success", "Report Deleted");
-    res.redirect("/report");
-  })
+  wrapAsync(reportController.editReport)
 );
 
 module.exports = router;

@@ -9,14 +9,12 @@
     </ul>
     <ul class="login">
       <% if(!currUser) { %>
-      <li><a href="/signup">Signup</a></li>
-      <li><a href="/login">Login</a></li>
+        <li><a href="/signup">Signup</a></li>
+        <li><a href="/login">Login</a></li>
+      <% } else { %>
+        <li><a href="/logout">Logout</a></li>
       <% } %>
-
-      <% if(currUser) { %>
-      <li><a href="/logout">Logout</a></li>
-      <% } %>
-    </ul>
+    </ul>    
     <ul class="navbar-nav ms-auto">
       <li class="nav-item dropdown">
         <a href="/" data-bs-toggle="dropdown" class="nav-icon pe-md-0">

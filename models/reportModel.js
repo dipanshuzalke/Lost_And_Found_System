@@ -38,12 +38,10 @@ const reportSchema = new Schema({
     default: "",
     set: (v) => (v === "" ? "hi" : v),
   },
-  // image: {
-  //   type: String,
-  //   required: true,
-  //   default: "",
-  //   set: (v) => (v === "" ? "hi" : v),
-  // },
+  image: {
+    url: String,
+    filename: String,
+  },
   owner: {
     type: Schema.Types.ObjectId,
     ref: "User",

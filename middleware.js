@@ -61,12 +61,5 @@ module.exports.validateFeedback = (req, res, next) => {
   }
 };
 
-//Authorization for Feedback
-module.exports.isFeedbackAuthor = async (req, res, next) => {
-  if (req.user && req.user.role === 'authorizedRole') {
-    return next();
-  } else {
-    req.flash("error", "You do not have permission to perform this action.");
-    return res.redirect("/feedback");
-  }
-}
+
+

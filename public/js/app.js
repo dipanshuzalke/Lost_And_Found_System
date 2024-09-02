@@ -45,4 +45,22 @@ sign_in_btn.addEventListener("click", () => {
   container.classList.remove("sign-up-mode");
 });
 
+//landing page
+gsap.from(".logo", { opacity: 0, duration: 1, delay: 2, y: 10 });
+gsap.from(".btn-action", { opacity: 0, duration: 1, delay: 3.2, y: 10 });
+gsap.from(".nav-item", {
+  opacity: 0,
+  duration: 1,
+  delay: 1,
+  y: 40,
+  stagger: 0.3,
+});
+
+gsap.from(".hero-title", { opacity: 0, duration: 1, delay: 1.6, y: 30 });
+gsap.from(".hero-desp", { opacity: 0, duration: 1, delay: 1.8, y: 30 });
+gsap.from(".start-btn", { opacity: 0, duration: 1, delay: 2.1, y: 30 });
+gsap.from(".watch-btn", { opacity: 0, duration: 1, delay: 2.2, y: 30 });
+gsap.from(".her-detail", { opacity: 0, duration: 1, delay: 1.3, y: 30 });
+gsap.from(".player", { opacity: 0, duration: 1, delay: 1.3, y: 30 });
+
 

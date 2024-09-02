@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/user.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Merienda:wght@300..900&family=Rowdies:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <div class="logo">
+          <h1>Lost and Found</h1>
+        </div>
+        <div class="login-btn">
+          <button class="btn-action">
+            Sign in &nbsp; <i class="fa-solid fa-arrow-right"></i>
+          </button>
+          <button class="btn-action">
+            Sign Up &nbsp; <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main">
+      <div class="home-container">
+        <div class="hero">
+          <h1 class="hero-title">
+            <span class="highlight">We</span> help you <br />
+            recover what <br />
+            you've lost.
+          </h1>
+          <p class="hero-desp">
+            Our ultimate goal is to reunite you with your missing items <br />
+            quickly and efficiently, and with the utmost care and dedication.
+          </p>
+
+          <div class="btn-group">
+            <a href="#" class="start-btn"
+              >Get Started &nbsp; <i class="fa-solid fa-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+
+        <div class="hero-detail">
+          <span class="bg aurora" style="--i: 0"></span>
+          <span class="bg aurora" style="--i: 1"></span>
+          <span class="bg aurora" style="--i: 2"></span>
+          <span class="bg aurora" style="--i: 3"></span>
+
+          <div class="player">
+            <img src="/assets/found-removebg.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- GSAP -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+      integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- LOTTIFILES -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"
+      integrity="sha512-jEnuDt6jfecCjthQAJ+ed0MTVA++5ZKmlUcmDGBv2vUI/REn6FuIdixLNnQT+vKusE2hhTk2is3cFvv5wA+Sgg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script>
+      gsap.from(".logo", { opacity: 0, duration: 1, delay: 2, y: 10 });
+      gsap.from(".btn-action", { opacity: 0, duration: 1, delay: 3.2, y: 10 });
+      gsap.from(".nav-item", {
+        opacity: 0,
+        duration: 1,
+        delay: 1,
+        y: 40,
+        stagger: 0.3,
+      });
+
+      gsap.from(".hero-title", { opacity: 0, duration: 1, delay: 1.6, y: 30 });
+      gsap.from(".hero-desp", { opacity: 0, duration: 1, delay: 1.8, y: 30 });
+      gsap.from(".start-btn", { opacity: 0, duration: 1, delay: 2.1, y: 30 });
+      gsap.from(".watch-btn", { opacity: 0, duration: 1, delay: 2.2, y: 30 });
+      gsap.from(".her-detail", { opacity: 0, duration: 1, delay: 1.3, y: 30 });
+      gsap.from(".player", { opacity: 0, duration: 1, delay: 1.3, y: 30 });
+    </script>
+  </body>
+</html>

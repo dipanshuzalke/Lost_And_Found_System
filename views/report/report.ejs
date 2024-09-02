@@ -58,8 +58,7 @@
       <% for(let report of allReports) { %>
       <a href="/report/<%= report._id %>" class="report-link">
         <div class="card grid" style="width: 18rem">
-          <div></div>
-          <img src="/assets/laptop.jpg" class="card-img-top" alt="..." />
+          <img src="<%= report.image.url %>" class="card-img-top" alt="..." />
           <div class="card-body">
             <p class="card-title">Item Name: <b><%= report.itemName %></b></p>
             <p class="card-text">Description: <%= report.description %></p>

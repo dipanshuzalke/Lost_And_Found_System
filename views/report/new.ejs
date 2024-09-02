@@ -6,7 +6,7 @@
           <div class="form-data">
             <h2 class="fw-bold offset-5 admin">FORM</h2>
             <hr class="admin" />
-            <form method="POST" action="/report" novalidate class="needs-validation">
+            <form method="POST" action="/report" novalidate class="needs-validation" enctype="multipart/form-data">
               <div class="row">
                 <div class="mb-3 col-md-4">
                   <label for="date" class="form-label admin">Date:</label>
@@ -76,8 +76,8 @@
                 </div>
                 <div class="mb-3">
                   <label for="image" class="form-label admin">Upload Image</label>
-                  <input type="file" name="report[image]" placeholder="What is the name on the photo ID?"
-                    class="form-control"/>
+                  <input type="file" name="report[image]"
+                    class="form-control" required/>
                     <!-- <div class="invalid-feedback">Please provide a image.</div> -->
                 </div>
               </div>

@@ -6,7 +6,10 @@ const sampleData = [
     question: "What is the wallpaper on the lock screen?",
     itemType: "Electronics",
     status: "Lost",
-    image: "",
+    image: {
+      filename: "iphone12_silver.jpg",
+      url: "https://example.com/images/iphone12_silver.jpg"
+    },
     // dateReported: ISODate("2024-08-10T14:30:00Z"),
     // dateReturned: null,
     // reportedBy: {
@@ -24,7 +27,10 @@ const sampleData = [
     question: "What is the brand of the laptop?",
     itemType: "Personal Item",
     status: "Found",
-    image: "",
+    image: {
+      filename: "blue_backpack.jpg",
+      url: "https://example.com/images/blue_backpack.jpg"
+    },
     // dateReported: ISODate("2024-08-12T09:45:00Z"),
     // dateReturned: null,
     // reportedBy: {
@@ -42,34 +48,40 @@ const sampleData = [
     question: "What is engraved on the inside of the ring?",
     itemType: "Jewelry",
     status: "Lost",
-    image: "",
-    //   dateReported: ISODate("2024-08-14T18:00:00Z"),
-    //   dateReturned: null,
-    //   reportedBy: {
-    //     userId: ObjectId("user_id_3"),
-    //     contactInfo: {
-    //       email: "user3@example.com",
-    //       phone: "123-456-7893",
-    //     },
+    image: {
+      filename: "gold_ring.jpg",
+      url: "https://example.com/images/gold_ring.jpg"
+    },
+    // dateReported: ISODate("2024-08-14T18:00:00Z"),
+    // dateReturned: null,
+    // reportedBy: {
+    //   userId: ObjectId("user_id_3"),
+    //   contactInfo: {
+    //     email: "user3@example.com",
+    //     phone: "123-456-7893",
     //   },
     // },
-    // {
-      itemName: "Red Umbrella",
-      description: "A red umbrella with a wooden handle, slightly worn.",
-      location: "Train station platform 2",
-      question: "What brand is printed on the umbrella?",
-      itemType: "Personal Item",
-      status: "Found",
-      image: "",
-      // dateReported: ISODate("2024-08-09T07:30:00Z"),
-      // dateReturned: ISODate("2024-08-11T10:00:00Z"),
-      // reportedBy: {
-      //   userId: ObjectId("user_id_4"),
-      //   contactInfo: {
-      //     email: "user4@example.com",
-      //     phone: "123-456-7894",
-      //   },
-      // },
+  },
+  {
+    itemName: "Red Umbrella",
+    description: "A red umbrella with a wooden handle, slightly worn.",
+    location: "Train station platform 2",
+    question: "What brand is printed on the umbrella?",
+    itemType: "Personal Item",
+    status: "Found",
+    image: {
+      filename: "red_umbrella.jpg",
+      url: "https://example.com/images/red_umbrella.jpg"
+    },
+    // dateReported: ISODate("2024-08-09T07:30:00Z"),
+    // dateReturned: ISODate("2024-08-11T10:00:00Z"),
+    // reportedBy: {
+    //   userId: ObjectId("user_id_4"),
+    //   contactInfo: {
+    //     email: "user4@example.com",
+    //     phone: "123-456-7894",
+    //   },
+    // },
   },
   {
     itemName: "Brown Wallet",
@@ -78,7 +90,10 @@ const sampleData = [
     question: "What is the amount of cash inside?",
     itemType: "Personal Item",
     status: "Lost",
-    image: "",
+    image: {
+      filename: "brown_wallet.jpg",
+      url: "https://example.com/images/brown_wallet.jpg"
+    },
     // dateReported: ISODate("2024-08-15T11:15:00Z"),
     // dateReturned: null,
     // reportedBy: {
@@ -96,7 +111,10 @@ const sampleData = [
     question: "What is the brand of the sunglasses?",
     itemType: "Accessories",
     status: "Found",
-    image: "",
+    image: {
+      filename: "black_sunglasses.jpg",
+      url: "https://example.com/images/black_sunglasses.jpg"
+    },
     // dateReported: ISODate("2024-08-13T13:20:00Z"),
     // dateReturned: null,
     // reportedBy: {
@@ -114,7 +132,10 @@ const sampleData = [
     question: "What is the brand of the water bottle?",
     itemType: "Personal Item",
     status: "Lost",
-    image: "",
+    image: {
+      filename: "green_water_bottle.jpg",
+      url: "https://example.com/images/green_water_bottle.jpg"
+    },
     // dateReported: ISODate("2024-08-08T16:40:00Z"),
     // dateReturned: null,
     // reportedBy: {
@@ -132,7 +153,10 @@ const sampleData = [
     question: "What is engraved on the pendant?",
     itemType: "Jewelry",
     status: "Found",
-    image: "",
+    image: {
+      filename: "silver_necklace.jpg",
+      url: "https://example.com/images/silver_necklace.jpg"
+    },
     // dateReported: ISODate("2024-08-07T12:55:00Z"),
     // dateReturned: null,
     // reportedBy: {
@@ -150,7 +174,10 @@ const sampleData = [
     question: "What is the name of the user account on the laptop?",
     itemType: "Electronics",
     status: "Lost",
-    image: "",
+    image: {
+      filename: "black_laptop.jpg",
+      url: "https://example.com/images/black_laptop.jpg"
+    },
     // dateReported: ISODate("2024-08-16T08:30:00Z"),
     // dateReturned: null,
     // reportedBy: {
@@ -168,7 +195,10 @@ const sampleData = [
     question: "What is the pattern on the scarf?",
     itemType: "Clothing",
     status: "Found",
-    image: "",
+    image: {
+      filename: "blue_scarf.jpg",
+      url: "https://example.com/images/blue_scarf.jpg"
+    },
     // dateReported: ISODate("2024-08-11T15:10:00Z"),
     // dateReturned: null,
     // reportedBy: {
@@ -182,6 +212,7 @@ const sampleData = [
 ];
 
 module.exports = { data: sampleData };
+
 
 // {
 //     itemName: "college bag",
