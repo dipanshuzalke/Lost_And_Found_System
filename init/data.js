@@ -8,7 +8,7 @@ const sampleData = [
     status: "Lost",
     image: {
       filename: "iphone12_silver.jpg",
-      url: "https://example.com/images/iphone12_silver.jpg"
+      url: "https://tse4.mm.bing.net/th?id=OIP.BaUsJpB__GfD1hNfIe_iwgHaHa&pid=Api&P=0&h=180"
     },
     // dateReported: ISODate("2024-08-10T14:30:00Z"),
     // dateReturned: null,
@@ -29,7 +29,7 @@ const sampleData = [
     status: "Found",
     image: {
       filename: "blue_backpack.jpg",
-      url: "https://example.com/images/blue_backpack.jpg"
+      url: "https://tse1.mm.bing.net/th?id=OIP.kFcP_PrCPSv5mPcwRU8RuwHaJE&pid=Api&P=0&h=180"
     },
     // dateReported: ISODate("2024-08-12T09:45:00Z"),
     // dateReturned: null,
@@ -50,7 +50,7 @@ const sampleData = [
     status: "Lost",
     image: {
       filename: "gold_ring.jpg",
-      url: "https://example.com/images/gold_ring.jpg"
+      url: "https://i5.walmartimages.com/asr/9edcf7e0-60f5-4756-a92d-4be2192b83a9_1.1f47521de03d30f2698f4342f02808ed.jpeg?odnWidth=1000&odnHeight=1000&odnBg=ffffff"
     },
     // dateReported: ISODate("2024-08-14T18:00:00Z"),
     // dateReturned: null,
@@ -71,7 +71,7 @@ const sampleData = [
     status: "Found",
     image: {
       filename: "red_umbrella.jpg",
-      url: "https://example.com/images/red_umbrella.jpg"
+      url: "https://tse3.mm.bing.net/th?id=OIP.Jci_rAYEg_AhmABb4-YMgwAAAA&pid=Api&P=0&h=180"
     },
     // dateReported: ISODate("2024-08-09T07:30:00Z"),
     // dateReturned: ISODate("2024-08-11T10:00:00Z"),
@@ -92,7 +92,7 @@ const sampleData = [
     status: "Lost",
     image: {
       filename: "brown_wallet.jpg",
-      url: "https://example.com/images/brown_wallet.jpg"
+      url: "https://tse1.mm.bing.net/th?id=OIP.F9_x7w3Z8aFEgMF5N-y0PwHaE7&pid=Api&P=0&h=180"
     },
     // dateReported: ISODate("2024-08-15T11:15:00Z"),
     // dateReturned: null,
@@ -113,7 +113,7 @@ const sampleData = [
     status: "Found",
     image: {
       filename: "black_sunglasses.jpg",
-      url: "https://example.com/images/black_sunglasses.jpg"
+      url: "https://tse4.mm.bing.net/th?id=OIP.fVCM3g331guXT6QAkUGIwgHaHa&pid=Api&P=0&h=180"
     },
     // dateReported: ISODate("2024-08-13T13:20:00Z"),
     // dateReturned: null,
@@ -134,7 +134,7 @@ const sampleData = [
     status: "Lost",
     image: {
       filename: "green_water_bottle.jpg",
-      url: "https://example.com/images/green_water_bottle.jpg"
+      url: "https://tse3.mm.bing.net/th?id=OIP.Tey3IYFwr38tPqoTHJqGrQHaHa&pid=Api&P=0&h=180"
     },
     // dateReported: ISODate("2024-08-08T16:40:00Z"),
     // dateReturned: null,
@@ -155,7 +155,7 @@ const sampleData = [
     status: "Found",
     image: {
       filename: "silver_necklace.jpg",
-      url: "https://example.com/images/silver_necklace.jpg"
+      url: "https://tse1.mm.bing.net/th?id=OIP.x7zx6arnE2Q3LWRn-jXjmgHaHF&pid=Api&P=0&h=180"
     },
     // dateReported: ISODate("2024-08-07T12:55:00Z"),
     // dateReturned: null,
@@ -176,7 +176,7 @@ const sampleData = [
     status: "Lost",
     image: {
       filename: "black_laptop.jpg",
-      url: "https://example.com/images/black_laptop.jpg"
+      url: "https://tse3.mm.bing.net/th?id=OIP.8oLRWyq5kEgRuHMWRjn8EQHaFr&pid=Api&P=0&h=180"
     },
     // dateReported: ISODate("2024-08-16T08:30:00Z"),
     // dateReturned: null,
@@ -197,7 +197,7 @@ const sampleData = [
     status: "Found",
     image: {
       filename: "blue_scarf.jpg",
-      url: "https://example.com/images/blue_scarf.jpg"
+      url: "https://tse2.mm.bing.net/th?id=OIP.FlvXfFA8w1lk6vKFPkg5pgHaHa&pid=Api&P=0&h=180"
     },
     // dateReported: ISODate("2024-08-11T15:10:00Z"),
     // dateReturned: null,

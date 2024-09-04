@@ -41,9 +41,13 @@ body {
   border: none;
   background-color: #373336;
   font-size: 16px;
-  color: #fff;
   border-radius: 30px;
   cursor: pointer;
+}
+
+.header .nav button.btn-action a {
+  color: #fff;
+ text-decoration: none;
 }
 
 /* Main */

@@ -2,7 +2,7 @@ const Report = require("../models/reportModel.js");
 
 module.exports.index = async (req, res) => {
   let allReports = await Report.find({});
-  console.log(allReports);
+  // console.log(allReports);
   res.render("report/report.ejs", { allReports });
 };
 
@@ -12,6 +12,9 @@ module.exports.renderReportForm = (req, res) => {
 
 module.exports.createReport = async (req, res) => {
   try {
+    if (!req.body['report[image]'] && !req.file) {
+      return res.status(400).send('Image file is required.');
+    }
     let url = req.file.path;
     let filename = req.file.filename;
     const newReport = new Report(req.body.report);

@@ -2,33 +2,37 @@
   <div class="navbar-collapse collapse">
     <ul>
       <li>
-        <a href="/" class="clg-logo">
-          <img src="/assets/clg-logo.png" alt="clg-logo">
+        <a href="#" class="clg-logo">
+          <img src="/assets/clg-logo.png" alt="clg-logo" />
         </a>
       </li>
     </ul>
-    <ul class="login">
-      <% if(!currUser) { %>
-        <li><a href="/signup">Signup</a></li>
-        <li><a href="/login">Login</a></li>
-      <% } else { %>
-        <li><a href="/logout">Logout</a></li>
-      <% } %>
-    </ul>    
     <ul class="navbar-nav ms-auto">
       <li class="nav-item dropdown">
         <a href="/" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
           <img src="/assets/account.png" class="avatar img-fluid" alt="" />
         </a>
         <div class="dropdown-menu dropdown-menu-end rounded">
-          <a href="/" class="dropdown-item">
-            <i class="lni lni-timer"></i>
-            <span>Analytics</span>
+          <a href="/profile" class="dropdown-item">
+            <i class="fa-solid fa-user"></i>
+            <span>My Profile</span>
           </a>
-          <a href="/" class="dropdown-item">
-            <i class="lni lni-cog"></i>
-            <span>Settings</span>
+          <hr />
+          <% if(!currUser) { %>
+          <a href="/signup" class="dropdown-item">
+            <i class="fa-solid fa-diamond-turn-right"></i>
+            <span>Sign up</span>
           </a>
+          <a href="/login" class="dropdown-item">
+            <i class="fa-solid fa-diamond-turn-right"></i>
+            <span>Login</span>
+          </a>
+          <% } else { %>
+          <a href="/logout" class="dropdown-item">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>Logout</span>
+          </a>
+          <% } %>
         </div>
       </li>
     </ul>

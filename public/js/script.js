@@ -18,3 +18,29 @@
         }, false)
       })
   })();
+
+  //Total Members
+  async function getTotalUsers() {
+    try {
+      const count = await User.countDocuments({});
+      console.log("Total registered users: ", count);
+    } catch (err) {
+      console.error("Error counting users: ", err);
+      return null;
+    }
+  }
+
+  getTotalUsers();
+
+  // Total Reports 
+  async function getTotalReports() {
+    try {
+      const report = await Report.countDocuments({});
+      console.log("Total reports: ", report);
+    } catch (err) {
+      console.error("Error counting reports: ", err);
+      return null;
+    }
+  }
+
+  getTotalReports();

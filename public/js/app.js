@@ -62,5 +62,3 @@ gsap.from(".start-btn", { opacity: 0, duration: 1, delay: 2.1, y: 30 });
 gsap.from(".watch-btn", { opacity: 0, duration: 1, delay: 2.2, y: 30 });
 gsap.from(".her-detail", { opacity: 0, duration: 1, delay: 1.3, y: 30 });
 gsap.from(".player", { opacity: 0, duration: 1, delay: 1.3, y: 30 });
-
-

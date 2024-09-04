@@ -1,0 +1,75 @@
+<% layout("/layouts/boilerplate") %>
+
+  <div class="mb-3">
+    <h3 class="fw-bold fs-4 admin">Lost Items</h3>
+    <div class="sort-item">
+      <div class="search-form">
+        <form action="#" class="search-item">
+          <input
+            type="text"
+            class="form-control before-0 rounded-0 search-bar"
+            placeholder="Search..."
+          />
+          <span
+            ><button class="btn border-0 rounded-0 btn-search" type="button">
+              <i class="fa-solid fa-magnifying-glass"></i></button
+          ></span>
+        </form>
+      </div>
+      <div class="date-form">
+        <form action="#" class="search-item date-search">
+          <input
+            type="date"
+            class="form-control before-0 rounded-0 search-date-bar"
+            placeholder="Search by Date"
+          />
+          <button class="btn border-0 rounded-0 btn-search" type="button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+      </div>
+      <div class="dropdown">
+        <button
+          class="btn btn-dropdown dropdown-toggle"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Select by Category
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Bags & Backpacks</a></li>
+          <li><a class="dropdown-item" href="#">Clothing</a></li>
+          <li><a class="dropdown-item" href="#">Computers & Electronics</a></li>
+          <li><a class="dropdown-item" href="#">Earphones</a></li>
+          <li><a class="dropdown-item" href="#">Footwear</a></li>
+          <li><a class="dropdown-item" href="#">IDs & Cards</a></li>
+          <li><a class="dropdown-item" href="#">Keys & Keychains</a></li>
+          <li><a class="dropdown-item" href="#">Mobile Devices</a></li>
+          <li><a class="dropdown-item" href="#">Papers & Documents</a></li>
+          <li><a class="dropdown-item" href="#">Wallets & Purses</a></li>
+          <li><a class="dropdown-item" href="#">Watches & Jewellery</a></li>
+          <li><a class="dropdown-item" href="#">Wires & Cables</a></li>
+          <li><a class="dropdown-item" href="#">Other</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-container lost-card">
+      <% for(let lostItem of allLostItems) { %>
+      <a href="/report/lost/<%= lostItem._id %>" class="report-link">
+        <div class="card grid" style="width: 18rem">
+          <img src="<%= lostItem.image.url %>" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <p class="card-title">Item Name: <b><%= lostItem.itemName %></b></p>
+            <p class="card-text">Description: <%= lostItem.description %></p>
+            <p class="card-text">Location: <%= lostItem.location %></p>
+            <p class="card-text">Question: <%= lostItem.question %></p>
+            <p class="card-text">Item type: <%= lostItem.itemType %></p>
+            <p class="card-text">Status: <%= lostItem.status %></p>
+            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+          </div>
+        </div>
+      </a>
+      <% } %>
+    </div>
+  </div>

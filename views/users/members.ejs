@@ -1,0 +1,22 @@
+<% layout("/layouts/boilerplate") %>
+<div class="member-info">
+<h2>List of All Users</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Semester - Section</th>
+            <th>Email</th>
+            <th>Username</th>
+        </tr>
+        <% for(user of users) { %>
+            <tr>
+                <td><%= user.fullName %></td>
+                <td><%= user.department %></td>
+                <td><%= user.semester %> Sem &nbsp; <%= user.section %></td>
+                <td><%= user.email %></td>
+                <td><%= user.username %></td>
+            </tr>
+        <% } %>
+    </table>
+</div>

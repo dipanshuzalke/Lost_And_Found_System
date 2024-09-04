@@ -1,0 +1,20 @@
+<% layout("/layouts/boilerplate") %>
+
+    <div class="profile-card">
+        <div class="profile-image">
+            <img src="/assets/account.png" alt="Profile Image">
+        </div>
+        <div class="profile-details">
+            <h2> <%= user.fullName %> </h2>
+            <!-- <p class="headline">Canada Area, Switzerland | Marketing and Advertising</p> -->
+            <p><strong>Username:</strong> <%= user.username %> </p>
+            <p><strong>Email:</strong> <%= user.email %> </p>
+            <p><strong>Department:</strong> <%= user.department %> </p>
+            <p><strong>Semester:</strong> <%= user.semester %> Sem</p>
+            <p><strong>Section:</strong> <%= user.section %></p>
+            <p><strong>Contact:</strong> <%= user.contact %></p>
+            <a href="/report">Back to Report</a> 
+        </div>
+    </div>
+
+   

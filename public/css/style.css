@@ -240,7 +240,7 @@ footer {
 }
 
 .search-item {
-    display: flex;
+  display: flex;
 }
 
 .search-bar {
@@ -261,11 +261,8 @@ footer {
 .card-container {
   padding-top: 4rem;
   display: grid;
-  gap: 40px;
-  grid-template-areas:
-    "I1 I1 I2 I3"
-    "I1 I1 I2 I7"
-    "I4 I5 I6 I7";
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
 .lost-card {
@@ -282,6 +279,14 @@ footer {
 .grid:hover {
   transform: scale(1.05);
   transition: 0.2s ease-in-out;
+}
+
+.category {
+  background-color: #0e2238;
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 /* Show Report */
@@ -316,7 +321,6 @@ footer {
   color: #fff;
   padding: 0.5rem 2rem;
 }
-
 /* Feedback form */
 .form-data h2 {
   font-family: "DM Serif Text", serif;
@@ -324,7 +328,7 @@ footer {
   font-style: normal;
 }
 
-.rating h3{
+.rating h3 {
   font-size: 18px;
   /* color: #000000; */
   font-weight: 600;
@@ -371,11 +375,115 @@ footer {
   font-size: 20px;
 }
 
-.login{
+/* Profile page CSS */
+.member-info {
   display: flex;
-  font-size: 20px;
-  font-weight: 600;
-  gap: 50px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+}
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+  max-width: 600px;
+}
+.profile-image {
+  background: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.profile-image img {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+
+.profile-details {
+  padding: 20px;
+}
+.profile-details h2 {
+  margin: 0;
+  color: #333;
+  font-size: 24px;
+}
+.profile-details p {
+  margin: 10px 0;
+  font-size: 16px;
+  color: #555;
+}
+.profile-details p strong {
+  color: #333;
+}
+.profile-details a {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #007bff;
+  font-size: 16px;
+}
+.profile-details a:hover {
+  text-decoration: underline;
+}
+
+/* Member Information */
+.member-info {
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f4f9;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  padding: 20px 0;
+}
+.table-container {
+  width: 90%;
+  margin: 20px auto;
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+th {
+  background-color: #4caf50;
+  color: white;
+}
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+tr:hover {
+  background-color: #f1f1f1;
+}
+button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+button:hover {
+  background-color: #0056b3;
 }
 
 @media (max-width: 768px) {
@@ -413,7 +521,7 @@ footer {
     padding: 10px 20px;
   }
 
-  .sort-item{
+  .sort-item {
     padding-top: 0.8rem;
     display: flex;
     flex-direction: column;
@@ -424,7 +532,8 @@ footer {
     width: 80%;
   }
 
-  .search-bar, search-date-bar {
+  .search-bar,
+  search-date-bar {
     padding: 0 10px;
   }
 
@@ -447,7 +556,68 @@ footer {
     font-size: 30px;
   }
 
-  .rating-box .stars{
+  .rating-box .stars {
     gap: 5px;
+  }
+  .table-container {
+    width: 100%;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    border: 0;
+  }
+  th,
+  td {
+    display: block;
+    text-align: right;
+    padding: 10px;
+    position: relative;
+    border-bottom: 1px solid #ddd;
+  }
+  th {
+    display: none;
+  }
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 45%;
+    padding-left: 10px;
+    font-weight: bold;
+    color: #333;
+    white-space: nowrap;
+  }
+  td {
+    padding-left: 50%;
+    text-align: left;
+  }
+
+  .card-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  .card-img-top {
+    height: 150px;
+  }
+}
+@media (min-width: 600px) {
+  .profile-card {
+    flex-direction: row;
+  }
+  .profile-details {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-container {
+    grid-template-columns: 1fr;
+  }
+
+  .card-img-top {
+    height: 120px;
   }
 }

@@ -18,6 +18,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/userModel.js");
 
+
 const reportRouter = require("./routes/report.js");
 const feedbackRouter = require("./routes/feedback.js");
 const userRouter = require("./routes/user.js");
@@ -77,13 +78,14 @@ app.use("/report", reportRouter);
 app.use("/feedback", feedbackRouter);
 app.use("/", userRouter);
 
-// Root route
+
 app.get("/", (req, res) => {
-  res.render("report/index.ejs");
+  res.render("homepage.ejs");
 });
 
-app.get("/home", (req, res) => {
-  res.render("homepage.ejs");
+// Root route
+app.get("/index", (req, res) => {
+  res.render("report/index.ejs");
 });
 
 // Returned report route
