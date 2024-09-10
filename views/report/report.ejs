@@ -4,9 +4,11 @@
   <h3 class="fw-bold fs-4 admin">Lost Items</h3>
   <div class="sort-item">
     <div class="search-form">
-      <form action="#" class="search-item">
+      <form method="GET" action="/search-item" class="search-item">
         <input
           type="text"
+          id="itemSearch"
+          name="query"
           class="form-control before-0 rounded-0 search-bar"
           placeholder="Search..."
         />
@@ -59,6 +61,7 @@
     <a href="/report/<%= report._id %>" class="report-link">
       <div class="card grid" style="width: 18rem">
         <div class="card-header category"><%= report.itemType%></div>
+        <img src="<%= report.image.url %>" class="card-img-top" alt="..." />
         <div class="card-body">
           <p class="card-title">Item Name: <b><%= report.itemName %></b></p>
           <p class="card-text">Description: <%= report.description %></p>

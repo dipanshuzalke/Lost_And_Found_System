@@ -1,0 +1,32 @@
+<% layout("/layouts/boilerplate") %>
+<div class="row">
+  <div class="card-container show-report offset-5">
+    <div class="card grid" style="width: 18rem">
+      <div class="card-header category"><%= foundItem.itemType%></div>
+      <img src="<%= foundItem.image.url %>" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <p class="card-title">Owned by <b><%= foundItem.owner.fullName %></b></p>
+        <p class="card-title">Item Name: <b><%= foundItem.itemName %></b></p>
+        <p class="card-text">Description: <%= foundItem.description %></p>
+        <p class="card-text">Location: <%= foundItem.location %></p>
+        <p class="card-text">Question: <%= foundItem.question %></p>
+        <p class="card-text">Item type: <%= foundItem.itemType %></p>
+        <p class="card-text">Status: <%= foundItem.status %></p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+    </div>
+
+    <% if(currUser && currUser._id.equals(foundItem.owner._id)) { %>
+    <div class="btns show-btns">
+      <a
+        href="/report/found/<%= foundItem._id %>/edit"
+        class="btn edit-btn"
+        >Edit</a
+      >
+      <form method="POST" action="/report/found/<%= foundItem._id %>?_method=DELETE">
+        <button class="btn delete-btn">Delete</button>
+      </form>
+    </div>
+    <% } %>
+  </div>
+</div>

@@ -1,9 +1,10 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync.js");
 // const ExpressError = require("../utils/ExpressError.js");
 // const { reportSchema } = require("../schema.js");
-const Report = require("../models/reportModel.js");
+// const Report = require("../models/reportModel.js");
 const { isLoggedIn, isOwner, validateReport } = require("../middleware.js");
 const multer = require("multer");
 const { storage } = require("../cloudConfig.js");
@@ -13,8 +14,8 @@ const reportController = require("../controllers/report.js");
 
 router
   .route("/")
-  //Index route
-  .get(wrapAsync(reportController.index))
+  // //Index route
+  // .get(wrapAsync(reportController.index))
   //Create route
   .post(
     isLoggedIn,
@@ -22,68 +23,65 @@ router
     validateReport,
     wrapAsync(reportController.createReport)
   );
-  // .post(upload.single("report[image]"), (req, res) => {
-  //   console.log(req.body); // Log the body to check for 'report.image'
-  //   console.log(req.file);  // If using Multer, check the file
-  //   if (!req.body['report[image]'] && !req.file) {
-  //   return res.status(400).send('Image file is required.');
-  // }
-  //   res.send(req.file.url);
-  // });
 
 // Add new report route
 router.get("/new", isLoggedIn, reportController.renderReportForm);
 
-router
-  .route("/:id")
-  //Show route
-  .get(wrapAsync(reportController.showReport))
-  //Update route
-  .put(
-    isLoggedIn,
-    isOwner,
-    upload.single("report[image]"),
-    validateReport,
-    wrapAsync(reportController.updateReport)
-  )
-  //Edit route
-  .delete(isLoggedIn, isOwner, wrapAsync(reportController.destroyReport));
+// // Edit report
+// router.get(
+//   "/:id/edit",
+//   isLoggedIn,
+//   isOwner,
+//   wrapAsync(reportController.editReport)
+// );
 
-// Edit report
-router.get(
-  "/:id/edit",
-  isLoggedIn,
-  isOwner,
-  wrapAsync(reportController.editReport)
-);
+// //Lost Items
+// router.get("/lost/:id", async (req, res) => {
+//   const { id } = req.params;
 
-// router.get("/report/lost", async (req, res) => {
-//   try {
-//     const allLostItems = await Report.find({ "status": "lost" });
-//     console.log(allLostItems);
-//     res.render("report/lostItems.ejs", { allLostItems });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send("An error occurred while retrieving lost items.");
+//   if (!mongoose.Types.ObjectId.isValid(id)) {
+//     return res.status(400).send("Invalid ID format");
 //   }
+
+//   const lostItem = await Report.findById(id);
+//   res.render("report/lostItems.ejs", { lostItem });
 // });
 
-router.get("/report/lost/:id", async (req, res) => {
-  const { id } = req.params;
+// router.get("/lost", async (req, res) => {
+//   const allLostItems = await Report.find({ status: "Lost" });
+//   res.render("report/lostItems.ejs", { allLostItems });
+// });
 
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).send("Invalid ID format");
-  }
+// //Found Items
+// router.get("/found/:id", async (req, res) => {
+//   const { id } = req.params;
 
-  const lostItem = await Report.findById(id);
-  res.render("report/lostItems.ejs", { lostItem });
-});
+//   if (!mongoose.Types.ObjectId.isValid(id)) {
+//     return res.status(400).send("Invalid ID format");
+//   }
 
+//   const foundItem = await Report.findById(id);
+//   res.render("report/foundItems.ejs", { foundItem });
+// });
 
-router.get("/report/lost", async (req, res) => {
-  const allLostItems = await Report.find({ status : "Lost" });
-  console.log(allLostItems);
-  res.render("report/lostItems.ejs", { allLostItems });
-});
+// router.get("/found", async (req, res) => {
+//   const allFoundItems = await Report.find({ status: "Found" });
+//   res.render("report/foundItems.ejs", { allFoundItems });
+// });
+
+// router
+//   .route("/:id")
+//   //Show route
+//   .get(wrapAsync(reportController.showReport))
+//   //Update route
+//   .put(
+//     isLoggedIn,
+//     isOwner,
+//     upload.single("report[image]"),
+//     validateReport,
+//     wrapAsync(reportController.updateReport)
+//   )
+//   //Edit route
+//   .delete(isLoggedIn, isOwner, wrapAsync(reportController.destroyReport));
 
 module.exports = router;

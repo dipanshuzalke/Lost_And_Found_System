@@ -20,6 +20,8 @@ const User = require("./models/userModel.js");
 
 
 const reportRouter = require("./routes/report.js");
+const lostRouter = require("./routes/lostRoutes.js");
+const foundRouter = require("./routes/foundRoutes.js");
 const feedbackRouter = require("./routes/feedback.js");
 const userRouter = require("./routes/user.js");
 
@@ -75,6 +77,8 @@ app.use((req, res, next) => {
 });
 
 app.use("/report", reportRouter);
+app.use("/report/lost", lostRouter);
+app.use("/report/found", foundRouter);
 app.use("/feedback", feedbackRouter);
 app.use("/", userRouter);
 

@@ -55,19 +55,19 @@
       </div>
     </div>
     <div class="card-container lost-card">
-      <% for(let lostItem of allLostItems) { %>
-      <a href="/report/lost/<%= lostItem._id %>" class="report-link">
+      <% for(let foundItem of allFoundItems) { %>
+      <a href="/report/found/<%= foundItem._id %>" class="report-link">
         <div class="card grid" style="width: 18rem">
-          <div class="card-header category"><%= lostItem.itemType%></div>
-          <img src="<%= lostItem.image.url %>" class="card-img-top" alt="..." />
+          <div class="card-header category"><%= foundItem.itemType%></div>
+          <img src="<%= foundItem.image.url %>" class="card-img-top" alt="..." />
           <div class="card-body">
-            <p class="card-title">Item Name: <b><%= lostItem.itemName %></b></p>
-            <p class="card-text">Description: <%= lostItem.description %></p>
-            <p class="card-text">Location: <%= lostItem.location %></p>
-            <p class="card-text">Question: <%= lostItem.question %></p>
-            <p class="card-text">Item type: <%= lostItem.itemType %></p>
-            <p class="card-text">Status: <%= lostItem.status %></p>
-            <!-- <a href="#" class="btn btn-primary">Found</a> -->
+            <p class="card-title">Item Name: <b><%= foundItem.itemName %></b></p>
+            <p class="card-text">Description: <%= foundItem.description %></p>
+            <p class="card-text">Location: <%= foundItem.location %></p>
+            <p class="card-text">Question: <%= foundItem.question %></p>
+            <p class="card-text">Item type: <%= foundItem.itemType %></p>
+            <p class="card-text">Status: <%= foundItem.status %></p>
+            <!-- <a href="#" class="btn btn-primary">Claim</a> -->
           </div>
         </div>
       </a>

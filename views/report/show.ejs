@@ -2,6 +2,7 @@
 <div class="row">
   <div class="card-container show-report offset-5">
     <div class="card grid" style="width: 18rem">
+      <div class="card-header category"><%= report.itemType%></div>
       <img src="<%= report.image.url %>" class="card-img-top" alt="..." />
       <div class="card-body">
         <p class="card-title">Owned by <b><%= report.owner.fullName %></b></p>
