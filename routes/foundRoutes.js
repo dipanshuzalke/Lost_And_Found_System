@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const router = express.Router();
+const foundRouter = express.Router();
 const wrapAsync = require("../utils/wrapAsync.js");
 // const ExpressError = require("../utils/ExpressError.js");
 // const { reportSchema } = require("../schema.js");
@@ -12,7 +12,7 @@ const upload = multer({ storage });
 
 const foundController = require("../controllers/report.js");
 
-router
+foundRouter
   .route("/")
   //Index route
   .get(wrapAsync(foundController.foundItems))
@@ -25,14 +25,14 @@ router
 //   );
 
 // Edit report
-router.get(
+foundRouter.get(
     "/:id/edit",
     isLoggedIn,
     isOwner,
     wrapAsync(foundController.editFoundItem)
   );
 
-router
+foundRouter
   .route("/:id")
   //Show route
   .get(wrapAsync(foundController.showFoundItem))
@@ -47,4 +47,4 @@ router
   //Edit route
   .delete(isLoggedIn, isOwner, wrapAsync(foundController.destroyFoundItem));
 
-module.exports = router;
+module.exports = foundRouter;
