@@ -5,7 +5,7 @@ const sampleData = [
     location: "Coffee shop near 5th Avenue",
     question: "What is the wallpaper on the lock screen?",
     itemType: "Electronics",
-    status: "Lost",
+    status: "lost",
     image: {
       filename: "iphone12_silver.jpg",
       url: "https://tse4.mm.bing.net/th?id=OIP.BaUsJpB__GfD1hNfIe_iwgHaHa&pid=Api&P=0&h=180"
@@ -26,7 +26,7 @@ const sampleData = [
     location: "Library, 3rd floor",
     question: "What is the brand of the laptop?",
     itemType: "Personal Item",
-    status: "Found",
+    status: "found",
     image: {
       filename: "blue_backpack.jpg",
       url: "https://tse1.mm.bing.net/th?id=OIP.kFcP_PrCPSv5mPcwRU8RuwHaJE&pid=Api&P=0&h=180"
@@ -47,7 +47,7 @@ const sampleData = [
     location: "Restaurant bathroom",
     question: "What is engraved on the inside of the ring?",
     itemType: "Jewelry",
-    status: "Lost",
+    status: "lost",
     image: {
       filename: "gold_ring.jpg",
       url: "https://i5.walmartimages.com/asr/9edcf7e0-60f5-4756-a92d-4be2192b83a9_1.1f47521de03d30f2698f4342f02808ed.jpeg?odnWidth=1000&odnHeight=1000&odnBg=ffffff"
@@ -68,7 +68,7 @@ const sampleData = [
     location: "Train station platform 2",
     question: "What brand is printed on the umbrella?",
     itemType: "Personal Item",
-    status: "Found",
+    status: "found",
     image: {
       filename: "red_umbrella.jpg",
       url: "https://tse3.mm.bing.net/th?id=OIP.Jci_rAYEg_AhmABb4-YMgwAAAA&pid=Api&P=0&h=180"
@@ -89,7 +89,7 @@ const sampleData = [
     location: "Bus stop near Main Street",
     question: "What is the amount of cash inside?",
     itemType: "Personal Item",
-    status: "Lost",
+    status: "lost",
     image: {
       filename: "brown_wallet.jpg",
       url: "https://tse1.mm.bing.net/th?id=OIP.F9_x7w3Z8aFEgMF5N-y0PwHaE7&pid=Api&P=0&h=180"
@@ -110,7 +110,7 @@ const sampleData = [
     location: "Beach, near the lifeguard tower",
     question: "What is the brand of the sunglasses?",
     itemType: "Accessories",
-    status: "Found",
+    status: "found",
     image: {
       filename: "black_sunglasses.jpg",
       url: "https://tse4.mm.bing.net/th?id=OIP.fVCM3g331guXT6QAkUGIwgHaHa&pid=Api&P=0&h=180"
@@ -131,7 +131,7 @@ const sampleData = [
     location: "Gym locker room",
     question: "What is the brand of the water bottle?",
     itemType: "Personal Item",
-    status: "Lost",
+    status: "lost",
     image: {
       filename: "green_water_bottle.jpg",
       url: "https://tse3.mm.bing.net/th?id=OIP.Tey3IYFwr38tPqoTHJqGrQHaHa&pid=Api&P=0&h=180"
@@ -152,7 +152,7 @@ const sampleData = [
     location: "Shopping mall parking lot",
     question: "What is engraved on the pendant?",
     itemType: "Jewelry",
-    status: "Found",
+    status: "found",
     image: {
       filename: "silver_necklace.jpg",
       url: "https://tse1.mm.bing.net/th?id=OIP.x7zx6arnE2Q3LWRn-jXjmgHaHF&pid=Api&P=0&h=180"
@@ -173,7 +173,7 @@ const sampleData = [
     location: "Conference room, 2nd floor",
     question: "What is the name of the user account on the laptop?",
     itemType: "Electronics",
-    status: "Lost",
+    status: "lost",
     image: {
       filename: "black_laptop.jpg",
       url: "https://tse3.mm.bing.net/th?id=OIP.8oLRWyq5kEgRuHMWRjn8EQHaFr&pid=Api&P=0&h=180"
@@ -194,7 +194,7 @@ const sampleData = [
     location: "Park bench near the fountain",
     question: "What is the pattern on the scarf?",
     itemType: "Clothing",
-    status: "Found",
+    status: "found",
     image: {
       filename: "blue_scarf.jpg",
       url: "https://tse2.mm.bing.net/th?id=OIP.FlvXfFA8w1lk6vKFPkg5pgHaHa&pid=Api&P=0&h=180"

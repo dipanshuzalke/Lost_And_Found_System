@@ -1,7 +1,115 @@
 <% layout("/layouts/boilerplate") %>
 
+<script>
+  // Function to check if the user is logged in
+  function checkLoginStatus(callback) {
+    fetch("/check-login")
+      .then((response) => response.json())
+      .then((data) => {
+        callback(data.loggedIn);
+      })
+      .catch((error) => {
+        console.error("Error checking login status:", error);
+        callback(false);
+      });
+  }
+
+  // Function for Found Report
+  function foundReport() {
+    checkLoginStatus((isLoggedIn) => {
+      if (isLoggedIn) {
+        let itemDescription = prompt("<%= foundReportQuestion %>"); // Updated variable name
+
+        if (itemDescription) {
+          alert(
+            "Thank you for reporting! You described the found item as: " +
+              itemDescription
+          );
+          // Send the found item data to the server to store it
+          fetch("/report/found", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              type: "found",
+              description: itemDescription,
+            }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                alert("Found item report has been saved successfully.");
+              } else {
+                alert("Error saving the found item report.");
+              }
+            })
+            .catch((error) => {
+              console.error("Error saving found report:", error);
+            });
+        } else {
+          alert("No description provided. Please try again.");
+        }
+      } else {
+        alert("Please log in first to report a found item.");
+      }
+    });
+  }
+
+  // Function for Lost Report
+  function lostReport() {
+    checkLoginStatus((isLoggedIn) => {
+      if (isLoggedIn) {
+        let itemDescription = prompt("<%= lostReportQuestion %>"); // Updated variable name
+
+        if (itemDescription) {
+          let lostLocation = prompt("Where did you lose the item?");
+
+          if (lostLocation) {
+            alert(
+              "Thank you for reporting! You described the lost item as: " +
+                itemDescription +
+                "\nLocation: " +
+                lostLocation
+            );
+            // Send the lost item data to the server to store it
+            fetch("/report/lost", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                type: "lost",
+                description: itemDescription,
+                location: lostLocation,
+              }),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.success) {
+                  alert("Lost item report has been saved successfully.");
+                } else {
+                  alert("Error saving the lost item report.");
+                }
+              })
+              .catch((error) => {
+                console.error("Error saving lost report:", error);
+              });
+          } else {
+            alert("Location not provided. Please try again.");
+          }
+        } else {
+          alert("No description provided. Please try again.");
+        }
+      } else {
+        alert("Please log in first to report a lost item.");
+      }
+    });
+  }
+</script>
+
 <div class="mb-3">
-  <h3 class="fw-bold fs-4 admin">Lost Items</h3>
+  <h3 class="fw-bold fs-4 admin">Lost and Found Reports</h3>
   <div class="sort-item">
     <div class="search-form">
       <form method="GET" action="/search-item" class="search-item">
@@ -12,10 +120,11 @@
           class="form-control before-0 rounded-0 search-bar"
           placeholder="Search..."
         />
-        <span
-          ><button class="btn border-0 rounded-0 btn-search" type="button">
-            <i class="fa-solid fa-magnifying-glass"></i></button
-        ></span>
+        <span>
+          <button class="btn border-0 rounded-0 btn-search" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </span>
       </form>
     </div>
     <div class="date-form">
@@ -56,22 +165,59 @@
       </ul>
     </div>
   </div>
+
+  <h2 class="fw-bold admin">Lost Reports</h2>
   <div class="card-container lost-card">
-    <% for(let report of allReports) { %>
-    <a href="/report/<%= report._id %>" class="report-link">
-      <div class="card grid" style="width: 18rem">
-        <div class="card-header category"><%= report.itemType%></div>
-        <img src="<%= report.image.url %>" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <p class="card-title">Item Name: <b><%= report.itemName %></b></p>
-          <p class="card-text">Description: <%= report.description %></p>
-          <p class="card-text">Location: <%= report.location %></p>
-          <p class="card-text">Question: <%= report.question %></p>
-          <p class="card-text">Status: <%= report.status %></p>
-          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-        </div>
-      </div>
-    </a>
-    <% } %>
+    <ul>
+      <% lostReports.forEach(function(lostReport) { %>
+        <% if (lostReport.status === 'lost') { %>
+          <li>
+            <a href="/report/<%= lostReport._id %>" class="report-link">
+              <div class="card grid" style="width: 18rem">
+                <div class="card-header category"><%= lostReport.itemType %></div>
+                <img src="<%= lostReport.image.url %>" class="card-img-top" alt="Lost Item Image" />
+                <div class="card-body">
+                  <p class="card-title"><strong>Item:</strong> <%= lostReport.itemName %></p>
+                  <p class="card-text"><strong>Description:</strong> <%= lostReport.description %></p>
+                  <p class="card-text"><strong>Location: </strong><%= lostReport.location %></p>
+                  <p class="card-text"><strong>Question: </strong><%= lostReport.question %></p>
+                  <p class="card-text"><strong>Status:</strong> <%= lostReport.status %></p>
+                </div>
+                              <!-- Button for Found Report -->
+            <button class="btn btn-success" onclick="foundReport()">Found</button>
+              </div>
+            </a>
+          </li>
+        <% } %>
+      <% }); %>
+    </ul>
+  </div>
+
+  <h2 class="fw-bold admin">Found Reports</h2>
+  <div class="card-container lost-card">
+    <ul>
+      <% foundReports.forEach(function(foundReport) { %>
+        <% if (foundReport.status === 'found') { %>
+          <li>
+            <a href="/report/<%= foundReport._id %>" class="report-link">
+              <div class="card grid" style="width: 18rem">
+                <div class="card-header category"><%= foundReport.itemType %></div>
+                <img src="<%= foundReport.image.url %>" class="card-img-top" alt="Found Item Image" />
+                <div class="card-body">
+                  <p class="card-title"><strong>Item:</strong> <%= foundReport.itemName %></p>
+                  <p class="card-text"><strong>Description:</strong> <%= foundReport.description %></p>
+                  <p class="card-text"><strong>Location: </strong><%= foundReport.location %></p>
+                  <p class="card-text"><strong>Question: </strong><%= foundReport.question %></p>
+                  <p class="card-text"><strong>Status:</strong> <%= foundReport.status %></p>
+                </div>
+                              <!-- Button for Lost Report -->
+            <button class="btn btn-primary" onclick="lostReport()">Lost</button>
+              </div>
+            </a>
+            
+          </li>
+        <% } %>
+      <% }); %>
+    </ul>
   </div>
 </div>

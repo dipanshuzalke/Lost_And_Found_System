@@ -20,10 +20,9 @@ const User = require("./models/userModel.js");
 
 
 const reportRouter = require("./routes/report.js");
-const lostRouter = require("./routes/lostRoutes.js");
-const foundRouter = require("./routes/foundRoutes.js");
 const feedbackRouter = require("./routes/feedback.js");
 const userRouter = require("./routes/user.js");
+const returnReportRouter = require("./routes/returnReport.js");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/minorProject";
 
@@ -77,10 +76,9 @@ app.use((req, res, next) => {
 });
 
 app.use("/report", reportRouter);
-app.use("/report/lost", lostRouter);
-app.use("/report/found", foundRouter);
 app.use("/feedback", feedbackRouter);
 app.use("/", userRouter);
+app.use("/report", returnReportRouter);
 
 
 app.get("/", (req, res) => {

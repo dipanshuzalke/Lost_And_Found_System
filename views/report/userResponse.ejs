@@ -1,0 +1,15 @@
+<% layout("/layouts/boilerplate") %>
+
+<h2 class="fw-bold">My Reports</h2>
+    <ul>
+        <% reports.forEach(report => { %>
+            <li>
+                <strong>Type:</strong> <%= report.type %><br>
+                <strong>Description:</strong> <%= report.description %><br>
+                <% if (report.location) { %>
+                    <strong>Location:</strong> <%= report.location %><br>
+                <% } %>
+                <hr>
+            </li>
+        <% }); %>
+    </ul>

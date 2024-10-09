@@ -57,4 +57,12 @@ router.get("/memberInfo", async (req, res) => {
   res.render("users/members.ejs", { users });
 });
 
+router.get('/check-login', (req, res) => {
+  if (req.isAuthenticated()) {
+    return res.json({ loggedIn: true });
+  } else {
+    return res.json({ loggedIn: false });
+  }
+});
+
 module.exports = router;

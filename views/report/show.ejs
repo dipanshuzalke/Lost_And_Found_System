@@ -1,6 +1,119 @@
 <% layout("/layouts/boilerplate") %>
+
+<script>
+  // Function to check if the user is logged in
+  function checkLoginStatus(callback) {
+    fetch("/check-login")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.loggedIn) {
+          callback(true);
+        } else {
+          callback(false);
+        }
+      })
+      .catch((error) => {
+        console.error("Error checking login status:", error);
+        callback(false);
+      });
+  }
+
+  // Function for Found Report
+  function foundReport() {
+    checkLoginStatus((isLoggedIn) => {
+      if (isLoggedIn) {
+        let itemDescription = prompt("<%= report.question %>");
+
+        if (itemDescription) {
+          alert(
+            "Thank you for reporting! You described the found item as: " +
+              itemDescription
+          );
+          // Send the found item data to the server to store it
+          fetch("/report/found", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              type: "found",
+              description: itemDescription,
+            }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                alert("Found item report has been saved successfully.");
+              } else {
+                alert("Error saving the found item report.");
+              }
+            })
+            .catch((error) => {
+              console.error("Error saving found report:", error);
+            });
+        } else {
+          alert("No description provided. Please try again.");
+        }
+      } else {
+        alert("Please log in first to report a found item.");
+      }
+    });
+  }
+
+  // Function for Lost Report
+  function lostReport() {
+    checkLoginStatus((isLoggedIn) => {
+      if (isLoggedIn) {
+        let itemDescription = prompt("<%= report.question %>");
+
+        if (itemDescription) {
+          let lostLocation = prompt("Where did you lose the item?");
+
+          if (lostLocation) {
+            alert(
+              "Thank you for reporting! You described the lost item as: " +
+                itemDescription +
+                "\nLocation: " +
+                lostLocation
+            );
+            // Send the lost item data to the server to store it
+            fetch("/report/lost", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                type: "lost",
+                description: itemDescription,
+                location: lostLocation,
+              }),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.success) {
+                  alert("Lost item report has been saved successfully.");
+                } else {
+                  alert("Error saving the lost item report.");
+                }
+              })
+              .catch((error) => {
+                console.error("Error saving lost report:", error);
+              });
+          } else {
+            alert("Location not provided. Please try again.");
+          }
+        } else {
+          alert("No description provided. Please try again.");
+        }
+      } else {
+        alert("Please log in first to report a lost item.");
+      }
+    });
+  }
+</script>
+
 <div class="row">
-  <div class="card-container show-report offset-5">
+  <div class="card-container show-report">
     <div class="card grid" style="width: 18rem">
       <div class="card-header category"><%= report.itemType%></div>
       <img src="<%= report.image.url %>" class="card-img-top" alt="..." />
@@ -16,13 +129,13 @@
       </div>
     </div>
 
-    <% if(currUser && currUser._id.equals(report.owner._id)) { %>
+    <% if (report.status === 'lost') { %>
+    <button class="btn btn-success" onclick="foundReport()">Found</button>
+    <% } %> <% if (report.status === 'found') { %>
+    <button onclick="lostReport()">Lost</button>
+    <% } %> <% if(currUser && currUser._id.equals(report.owner._id)) { %>
     <div class="btns show-btns">
-      <a
-        href="/report/<%= report._id %>/edit"
-        class="btn edit-btn"
-        >Edit</a
-      >
+      <a href="/report/<%= report._id %>/edit" class="btn edit-btn">Edit</a>
       <form method="POST" action="/report/<%= report._id %>?_method=DELETE">
         <button class="btn delete-btn">Delete</button>
       </form>

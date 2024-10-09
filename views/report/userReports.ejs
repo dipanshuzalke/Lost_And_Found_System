@@ -1,0 +1,29 @@
+<% layout("/layouts/boilerplate") %>
+<!-- user-reports.ejs -->
+<h3 class="fw-bold pb-3 admin">My Reports</h3>
+  <div class="card-container lost-card">
+    <ul>
+      <% if (reports.length > 0) { %>
+        <% reports.forEach(function(report) { %>
+          <li>
+            <a href="/report/myReports/<%= report._id %>" class="report-link">
+              <div class="card grid" style="width: 18rem">
+              <div class="card-header category"><%= report.itemType%></div>
+              <img src="<%= report.image.url %>" class="card-img-top" alt="..." />
+              <div class="card-body">
+              <p class="card-title"><strong>Item:</strong> <%= report.itemName %></p>
+              <p class="card-text"><strong>Description:</strong> <%= report.description %></p>
+              <p class="card-text"><strong>Location: </strong><%= report.location %></p>
+              <p class="card-text"><strong>Question: </strong><%= report.question %></p>
+              <p class="card-text"><strong>Status:</strong> <%= report.status %></p>
+            </a>
+              <!-- <button class="btn btn-primary report-btn" onclick="markAsFound(<%= report.id %>)">Claim</button> -->
+            </div>
+              </div>
+          </li>
+        <% }) %>
+      <% } else { %>
+        <li>No reports found.</li>
+      <% } %>
+    </ul>
+  </div>
