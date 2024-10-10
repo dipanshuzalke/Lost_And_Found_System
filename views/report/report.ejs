@@ -26,7 +26,7 @@
               itemDescription
           );
           // Send the found item data to the server to store it
-          fetch("/report/found", {
+          fetch("/report/user/found", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -73,7 +73,7 @@
                 lostLocation
             );
             // Send the lost item data to the server to store it
-            fetch("/report/lost", {
+            fetch("/report/user/lost", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -169,55 +169,82 @@
   <h2 class="fw-bold admin">Lost Reports</h2>
   <div class="card-container lost-card">
     <ul>
-      <% lostReports.forEach(function(lostReport) { %>
-        <% if (lostReport.status === 'lost') { %>
-          <li>
-            <a href="/report/<%= lostReport._id %>" class="report-link">
-              <div class="card grid" style="width: 18rem">
-                <div class="card-header category"><%= lostReport.itemType %></div>
-                <img src="<%= lostReport.image.url %>" class="card-img-top" alt="Lost Item Image" />
-                <div class="card-body">
-                  <p class="card-title"><strong>Item:</strong> <%= lostReport.itemName %></p>
-                  <p class="card-text"><strong>Description:</strong> <%= lostReport.description %></p>
-                  <p class="card-text"><strong>Location: </strong><%= lostReport.location %></p>
-                  <p class="card-text"><strong>Question: </strong><%= lostReport.question %></p>
-                  <p class="card-text"><strong>Status:</strong> <%= lostReport.status %></p>
-                </div>
-                              <!-- Button for Found Report -->
-            <button class="btn btn-success" onclick="foundReport()">Found</button>
-              </div>
-            </a>
-          </li>
-        <% } %>
-      <% }); %>
+      <% lostReports.forEach(function(lostReport) { %> <% if (lostReport.status
+      === 'lost') { %>
+      <li>
+        <a href="/report/<%= lostReport._id %>" class="report-link">
+          <div class="card grid" style="width: 18rem">
+            <div class="card-header category"><%= lostReport.itemType %></div>
+            <img
+              src="<%= lostReport.image.url %>"
+              class="card-img-top"
+              alt="Lost Item Image"
+            />
+            <div class="card-body">
+              <p class="card-title">
+                <strong>Item:</strong> <%= lostReport.itemName %>
+              </p>
+              <p class="card-text">
+                <strong>Description:</strong> <%= lostReport.description %>
+              </p>
+              <p class="card-text">
+                <strong>Location: </strong><%= lostReport.location %>
+              </p>
+              <p class="card-text">
+                <strong>Question: </strong><%= lostReport.question %>
+              </p>
+              <p class="card-text">
+                <strong>Status:</strong> <%= lostReport.status %>
+              </p>
+            </div>
+            <!-- Button for Found Report -->
+            <button class="btn btn-success" onclick="foundReport()">
+              Found
+            </button>
+          </div>
+        </a>
+      </li>
+      <% } %> <% }); %>
     </ul>
   </div>
 
   <h2 class="fw-bold admin">Found Reports</h2>
   <div class="card-container lost-card">
     <ul>
-      <% foundReports.forEach(function(foundReport) { %>
-        <% if (foundReport.status === 'found') { %>
-          <li>
-            <a href="/report/<%= foundReport._id %>" class="report-link">
-              <div class="card grid" style="width: 18rem">
-                <div class="card-header category"><%= foundReport.itemType %></div>
-                <img src="<%= foundReport.image.url %>" class="card-img-top" alt="Found Item Image" />
-                <div class="card-body">
-                  <p class="card-title"><strong>Item:</strong> <%= foundReport.itemName %></p>
-                  <p class="card-text"><strong>Description:</strong> <%= foundReport.description %></p>
-                  <p class="card-text"><strong>Location: </strong><%= foundReport.location %></p>
-                  <p class="card-text"><strong>Question: </strong><%= foundReport.question %></p>
-                  <p class="card-text"><strong>Status:</strong> <%= foundReport.status %></p>
-                </div>
-                              <!-- Button for Lost Report -->
+      <% foundReports.forEach(function(foundReport) { %> <% if
+      (foundReport.status === 'found') { %>
+      <li>
+        <a href="/report/<%= foundReport._id %>" class="report-link">
+          <div class="card grid" style="width: 18rem">
+            <div class="card-header category"><%= foundReport.itemType %></div>
+            <img
+              src="<%= foundReport.image.url %>"
+              class="card-img-top"
+              alt="Found Item Image"
+            />
+            <div class="card-body">
+              <p class="card-title">
+                <strong>Item:</strong> <%= foundReport.itemName %>
+              </p>
+              <p class="card-text">
+                <strong>Description:</strong> <%= foundReport.description %>
+              </p>
+              <p class="card-text">
+                <strong>Location: </strong><%= foundReport.location %>
+              </p>
+              <p class="card-text">
+                <strong>Question: </strong><%= foundReport.question %>
+              </p>
+              <p class="card-text">
+                <strong>Status:</strong> <%= foundReport.status %>
+              </p>
+            </div>
+            <!-- Button for Lost Report -->
             <button class="btn btn-primary" onclick="lostReport()">Lost</button>
-              </div>
-            </a>
-            
-          </li>
-        <% } %>
-      <% }); %>
+          </div>
+        </a>
+      </li>
+      <% } %> <% }); %>
     </ul>
   </div>
 </div>

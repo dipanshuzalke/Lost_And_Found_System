@@ -5,42 +5,59 @@ const returnReport = require('../models/returnReportModel');
 module.exports.foundResponse = async (req, res) => {
   try {
     const { description } = req.body;
+    
+    if (!description) {
+      req.flash('error', 'Item description is required.');
+      return res.redirect('/profile'); // Redirect back if no description
+    }
 
     const report = new returnReport({
       type: 'found',
       question: description,
       userId: req.user._id // Assuming user is logged in
     });
+
     console.log(report);
-    
-    await report.save();
-    res.json({ success: true });
+
+    await report.save(); // Save the report to the database
+    req.flash('success', 'Your found report has been submitted successfully.');
+    return res.redirect('/report/user/myResponses'); // Redirect to user response page
   } catch (error) {
     console.error('Error saving found report:', error);
-    res.json({ success: false });
+    req.flash('error', 'Error saving found report. Please try again.');
+    return res.redirect('back'); // Redirect back to form on error
   }
 };
 
 // Route for handling 'lost' report
 module.exports.lostResponse = async (req, res) => {
   try {
-    const { description, location } = req.body;
+    const { description, lostLocation } = req.body;
+    
+    if (!description || !location) {
+      req.flash('error', 'Item description and lost location are required.');
+      return res.redirect('back'); // Redirect back if data is missing
+    }
 
     const report = new returnReport({
       type: 'lost',
       question: description,
-      location,
+      location: location,
       userId: req.user._id // Assuming user is logged in
     });
+
     console.log(report);
 
-    await report.save();
-    res.json({ success: true });
+    await report.save(); // Save the report to the database
+    req.flash('success', 'Your lost report has been submitted successfully.');
+    return res.redirect('/report/user/myResponses'); // Redirect to user response page
   } catch (error) {
     console.error('Error saving lost report:', error);
-    res.json({ success: false });
+    req.flash('error', 'Error saving lost report. Please try again.');
+    return res.redirect('back'); // Redirect back to form on error
   }
 };
+
 
 // Controller to get all user responses
 module.exports.getUserResponse = async (req, res) => {
@@ -54,7 +71,7 @@ module.exports.getUserResponse = async (req, res) => {
     // Find all reports created by the logged-in user
     const userReports = await returnReport.find({ userId: req.user._id });
     // console.log(req.user._id );
-    
+
 
     // Render the myResponses page, passing in the user's reports
     res.render('report/userResponse.ejs', { userReports });
