@@ -4,20 +4,20 @@ const returnReport = require('../models/returnReportModel');
 // Route for handling 'found' report
 module.exports.foundResponse = async (req, res) => {
   try {
-    const { description } = req.body;
+    const { question } = req.body;
     
-    if (!description) {
+    if (!question) {
       req.flash('error', 'Item description is required.');
       return res.redirect('/profile'); // Redirect back if no description
     }
 
     const report = new returnReport({
       type: 'found',
-      question: description,
+      question: question,
       userId: req.user._id // Assuming user is logged in
     });
-
     console.log(report);
+    // console.log(req.body);
 
     await report.save(); // Save the report to the database
     req.flash('success', 'Your found report has been submitted successfully.');
@@ -32,7 +32,7 @@ module.exports.foundResponse = async (req, res) => {
 // Route for handling 'lost' report
 module.exports.lostResponse = async (req, res) => {
   try {
-    const { description, lostLocation } = req.body;
+    const { question, location } = req.body;
     
     if (!description || !location) {
       req.flash('error', 'Item description and lost location are required.');
@@ -41,12 +41,13 @@ module.exports.lostResponse = async (req, res) => {
 
     const report = new returnReport({
       type: 'lost',
-      question: description,
+      question: question,
       location: location,
       userId: req.user._id // Assuming user is logged in
     });
-
     console.log(report);
+    
+    // console.log(req.body);
 
     await report.save(); // Save the report to the database
     req.flash('success', 'Your lost report has been submitted successfully.');

@@ -18,12 +18,12 @@
   function foundReport() {
     checkLoginStatus((isLoggedIn) => {
       if (isLoggedIn) {
-        let itemDescription = prompt("<%= foundReportQuestion %>"); // Updated variable name
+        let question = prompt("<%= foundReportQuestion %>"); // Updated variable name
 
-        if (itemDescription) {
+        if (question) {
           alert(
             "Thank you for reporting! You described the found item as: " +
-              itemDescription
+              question
           );
           // Send the found item data to the server to store it
           fetch("/report/user/found", {
@@ -33,7 +33,7 @@
             },
             body: JSON.stringify({
               type: "found",
-              description: itemDescription,
+              question: question,
             }),
           })
             .then((response) => response.json())
@@ -60,17 +60,17 @@
   function lostReport() {
     checkLoginStatus((isLoggedIn) => {
       if (isLoggedIn) {
-        let itemDescription = prompt("<%= lostReportQuestion %>"); // Updated variable name
+        let question = prompt("<%= lostReportQuestion %>"); // Updated variable name
 
-        if (itemDescription) {
-          let lostLocation = prompt("Where did you lose the item?");
+        if (question) {
+          let location = prompt("Where did you lose the item?");
 
-          if (lostLocation) {
+          if (location) {
             alert(
               "Thank you for reporting! You described the lost item as: " +
-                itemDescription +
+                question +
                 "\nLocation: " +
-                lostLocation
+                location
             );
             // Send the lost item data to the server to store it
             fetch("/report/user/lost", {
@@ -80,8 +80,8 @@
               },
               body: JSON.stringify({
                 type: "lost",
-                description: itemDescription,
-                location: lostLocation,
+                question: question,
+                location: location,
               }),
             })
               .then((response) => response.json())

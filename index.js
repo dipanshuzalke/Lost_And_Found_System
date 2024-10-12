@@ -77,8 +77,8 @@ app.use((req, res, next) => {
 
 app.use("/report", reportRouter);
 app.use("/feedback", feedbackRouter);
-app.use("/", userRouter);
 app.use("/report/user", returnReportRouter);
+app.use("/", userRouter);
 
 
 app.get("/", (req, res) => {
